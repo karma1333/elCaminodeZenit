@@ -47,24 +47,26 @@ class Numerologia:
         dia = fecha[0]
         mes = fecha[1]
         lista = []
-        signos = ["", "acuario", "piscis", "aries", "tauro", "geminis", "Cáncer",
-                  "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio"]
-        for m in range(0, 13):
+        signos = ["","capricornio","acuario", "piscis", "aries", "tauro", "geminis", "Cáncer",
+                  "leo", "virgo", "libra", "escorpio", "sagitario"]
+        for m in range(1, 13):
             if m == int(mes):
                 if int(dia) <= 21:
-                    indice = m + 1
-                    lista.append(signos[indice])
-
-                else:
                     lista.append(signos[m])
 
+                else:
+                    indice = m +1
+                    lista.append(signos[indice])
+        print(lista)
         archivo = f"archivos/zodiaco/{lista[0]}"
         with open(archivo, encoding='utf-8') as z:
             contenido = z.read()
             return contenido
 
 
-
+#ana = Numerologia("10/06/1977")
+#numeroP = ana.zodiaco()
+#print(numeroP)
 
 
 

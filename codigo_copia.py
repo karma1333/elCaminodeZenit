@@ -9,15 +9,15 @@ from PIL import Image
 
 
 
-st.subheader(':violet[Numerologia], :violet[Tarot], :violet[Amuletos] :violet[y mucho más]...')
-st.write(" El recorrido que puedes hacer en esta página te va ayudar a conocer y descubrir nuevos aspectos de tu personalidad  ")
+st.subheader(':violet[El camino del Zenit]')
+st.write(" El recorrido que puedes hacer en esta página te ayudará a conocer y descubrir nuevos aspectos de tu personalidad.  ")
 #st.write(" ")
-st.write("Para empezar debes el conocer el numero que representa tu  fecha de Nacimiento")
-st.write(" o el significado de tu nombre ")
+st.write("Empezaremos por conocer el significado de tu número personal a través de la fecha de nacimiento,")
+st.write(" y después el significado de tu nombre.")
 
 
 
-continuar = ':violet[Continúa el recorrido, descubre todas las opciones del menú y enriquece tu mundo interior]'
+continuar = ':violet[Si quieres continuar el camino del Zenit, en el menú tienes más opciones para enriquecer tu mundo interior]'
 
 #st.subheader('Escribe tu :blue[nombre y fecha de Nacimiento]')
 #image = Image.open("imagenes/prueba.jpg")
@@ -33,7 +33,7 @@ fechaDeNacimiento = st.date_input("Cúal es tu fecha de nacimiento",
                                   )
 fechaDeNacimiento = fechaDeNacimiento.strftime("%d/%m/%Y")
 actual = datetime.datetime.now().strftime("%d/%m/%Y")
-st.write(fechaDeNacimiento)
+
 if nombre != "" and fechaDeNacimiento != actual:
 
     fecha = Numerologia(fechaDeNacimiento)
