@@ -7,16 +7,23 @@ class Numerologia:
 
     def numeroPersonal(self):
         """ Devuelve un numero entre 1 y 9"""
-        suma = 0
+        especiales = [10,11,13,15,17]
+        digitos = []
         calculo = self.fecha.split("/")
         for numero in calculo:
             for digito in numero:
-                suma += int(digito)
+                digitos.append(int(digito))
+        suma = sum(digitos)
+        if suma not in especiales:
 
-        suma1 = int(suma / 10)
-        suma2 = int(suma % 10)
-        fin = suma1 + suma2
-        return fin
+            suma1 = int(suma / 10)
+            suma2 = int(suma % 10)
+            fin = suma1 + suma2
+            return fin
+        else:
+            return suma
+
+
 
     def numero(self):
         """ Significado de los números personales"""
@@ -46,27 +53,31 @@ class Numerologia:
         fecha = self.fecha.split("/")
         dia = fecha[0]
         mes = fecha[1]
-        lista = []
+        lista = ""
         signos = ["","capricornio","acuario", "piscis", "aries", "tauro", "geminis", "Cáncer",
                   "leo", "virgo", "libra", "escorpio", "sagitario"]
         for m in range(1, 13):
             if m == int(mes):
                 if int(dia) <= 21:
-                    lista.append(signos[m])
+                    archivo = f"archivos/zodiaco/{signos[m]}"
+                    #lista += signos[m]
 
                 else:
                     indice = m +1
-                    lista.append(signos[indice])
-        print(lista)
-        archivo = f"archivos/zodiaco/{lista[0]}"
+                    archivo = f"archivos/zodiaco/{signos[indice]}"
+                    #lista += signos[indice]
+
+        #archivo = f"../archivos/zodiaco/{lista}"
         with open(archivo, encoding='utf-8') as z:
             contenido = z.read()
             return contenido
 
 
-#ana = Numerologia("10/06/1977")
-#numeroP = ana.zodiaco()
-#print(numeroP)
+ana = Numerologia("04/01/1901")
+numeroP = ana.zodiaco()
+nu = ana.numero()
+print(numeroP)
+print(nu)
 
 
 
