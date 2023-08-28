@@ -89,11 +89,11 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable c
     elif opcionElegida == "saber más":
         st.write("Tipś de la suerte")
 
-        tab1, tab2, tab3 = st.tabs(["Cat", "Dog", "Owl"])
+        tab1, tab2, tab3 = st.tabs(["Una Carta de Tarot", "Tirada de tres cartas", "Frase de hoy"])
 
         with tab1:
-            st.header("A cat")
-            image = Image.open("imagenes/cartasTarot/asdeespadas.png")
+            st.subheader("Pulsa sobre la imagen para descubrir tu carta")
+            image = Image.open("imagenes/cartasTarot/reverso.png")
             st.image(image, width=200)
 
         with tab2:
