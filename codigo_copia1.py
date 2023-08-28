@@ -93,7 +93,8 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable c
 
         with tab1:
             st.header("A cat")
-            st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+            image = Image.open("imagenes/cartasTarot/asdeespadas.png")
+            st.image(image, width=200)
 
         with tab2:
             col1, col2 = st.columns([1,2])
