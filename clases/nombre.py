@@ -1,5 +1,5 @@
-class Nombre:
-    """ Obtener un número entre 0-9 dando un valor a cada letra """
+class NombreN:
+    """ Obtener un número entre 0-9 dando un valor a cada letra de un texto """
     def __init__(self,nombre):
         self.nombre = nombre
 
@@ -13,7 +13,7 @@ class Nombre:
                      7:("g","p","y"),
                      8:("h","q","z"),
                      9:("i","í","r"),
-                     10:("ñ")
+                     10:("ñ"),
                      }
 
         lista =[]
@@ -29,13 +29,13 @@ class Nombre:
 
         calculo = str(sum(lista))
         while len(calculo)>1:
-            resultado= 0
+            resultado = 0
             for n in calculo:
                 resultado += int(n)
             calculo=str(resultado)
-        return resultado
+        return  calculo
 
 
 
-objeto1 = Nombre("Elle")
-print(objeto1.valoresletras())
+# objeto1 = Nombre("Elle")
+# print(objeto1.valoresletras())

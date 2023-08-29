@@ -40,8 +40,16 @@ class Numerologia:
 
     def numeroHistorico(self):
         """ Significado histórico de los números personales"""
+        historico = Numerologia.numeroPersonal(self)
+        if int(historico) < 10:
+            archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}mas"
+        else:
+            total = 0
+            for di in str(historico):
+                total += int(di)
+            archivo = f"archivos/numerosPersonales/{total}mas"
 
-        archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}mas"
+        #archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}mas"
 
         with open(archivo, encoding="utf-8") as datos:
             contenido = datos.read()

@@ -61,10 +61,23 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable l
     opcionElegida = opciones(opcion)
 
     if opcionElegida == "Tu número personal según tu fecha de nacimiento":
-        st.markdown(f'***{nombre.title()} tu número personal es el {numeroP}***')
+        st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
         st.header(numeroP)
-        st.write(principio[0])
-        st.caption(continuar)
+
+        tab1, tab2 = st.tabs(["Lección de vida", "Historia de tu número personal"])
+        with tab1:
+            st.write(principio[0])
+            st.caption(continuar)
+        with tab2:
+            historico = fecha.numeroHistorico()
+            st.write(historico)
+            # if int(historico)< 10:
+            #     st.write(historico)
+            # else:
+            #     total =0
+            #     for di in historico:
+            #         total += int(di)
+            #     st.write(historico)
 
     elif opcionElegida == "Conocer la lección de Vida, según tu número personal":
         st.write(principio[1])
@@ -136,12 +149,12 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable l
                     if tiradatres[1] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[1]}.png")
                         st.image(image,width=200 )
-                        st.write(" Esta carta indica:")
+                        st.write(" ESte carta indica:")
 
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[1]}.jpg")
                         st.image(image, width=200)
-                        st.write(" Esta carta indica:")
+                        st.write(" ESte carta indica:")
 
                 with col3:
                     if tiradatres[2] in tirada[1]:
