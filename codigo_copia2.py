@@ -6,7 +6,7 @@ from clases.nombre import *
 import datetime
 import streamlit as st
 from PIL import Image
-
+from codigoAmuletos import *
 
 st.set_page_config(
     page_title="El camino del Zenit",
@@ -185,15 +185,30 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         with tab4:
 
             st.write(' Estos amuletos son los apropiados para ti ')
-            # image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
-            # st.image(image, width=200)
-            # signoZodiaco = fecha.zodiaco()
-            # st.write(signoZodiaco)
+            image = Image.open("archivos/imagenesAmuletos/alaAngel.png")
+            st.image(image, width=200)
+            st.write("Para comprar esto [aqui](https://www.amazon.es/)")
+
 
         with tab5:
 
             st.write('Estos son los varios apropiados para ti')
+            ####
+            opcion =  ("Elige una opcion",
+                      "suerte",
+                      "dinero",
+                       "aaa",
+                       "bbbbb",
+                       "cccc")
 
+
+
+
+
+            ####
+            mostrar = Articulos(opcion)
+            elemento = opcion.index(mostrar.opcionElegida) - 1
+            st.write(f"{mostrar.amuletos()[0][elemento]}{mostrar.amuletos()[1][elemento]}{mostrar.amuletos()[2][elemento]}")
             amuleto1 = '(https://www.amazon.es/Hztyyier-Amuleto-cl%C3%A1sico-Suerte-Decoraci%C3%B3n/dp/B07VHZLRNC/ref=sr_1_10?keywords=amuletos+de+buena+suerte&qid=1693384521&sr=8-10)'
             st.write("pincha aqui [link]"+amuleto1)
             st.markdown('[https://www.amazon.es/]')
