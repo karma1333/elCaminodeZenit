@@ -81,11 +81,11 @@ class Numerologia:
             return contenido
 
 
-ana = Numerologia("04/01/1901")
-numeroP = ana.zodiaco()
-nu = ana.numero()
-print(numeroP)
-print(nu)
+# ana = Numerologia("04/01/1901")
+# numeroP = ana.zodiaco()
+# nu = ana.numero()
+# print(numeroP)
+# print(nu)
 
 
 

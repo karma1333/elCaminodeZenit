@@ -1,9 +1,11 @@
 class NombreN:
-    """ Obtener un número entre 0-9 dando un valor a cada letra de un texto """
+    """ Obtener un número entre 0-9 dando
+    un valor a cada letra de un texto """
     def __init__(self,nombre):
         self.nombre = nombre
 
     def valoresletras(self):
+        """ Dar un valor a cada letra de un texto"""
         conversor = {1:("a","á","j","s"),
                      2:("b","k","t"),
                      3:("c","l","u","u"),
@@ -37,5 +39,3 @@ class NombreN:
 
 
 
-# objeto1 = Nombre("Elle")
-# print(objeto1.valoresletras())

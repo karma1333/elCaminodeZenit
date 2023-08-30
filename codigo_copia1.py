@@ -56,6 +56,7 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable l
               "La historia de tu número personal",
               "Significado de tu nombre",
               "Tu carta de tarot para hoy",
+              "Tu signo del zodiaco",
               "Terminar",
               "Tarot")
     opcionElegida = opciones(opcion)
