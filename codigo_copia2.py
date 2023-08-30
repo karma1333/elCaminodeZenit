@@ -1,12 +1,10 @@
-from io import open
-from funciones.desplegable import opciones
 from clases.numerologia import *
 from clases.tarot import *
 from clases.nombre import *
 import datetime
 import streamlit as st
 from PIL import Image
-from codigoAmuletos import *
+from clases.articulos import *
 
 st.set_page_config(
     page_title="El camino del Zenit",
@@ -39,7 +37,9 @@ with st.sidebar:
 continuar = (':violet[Si quieres continuar el camino del Zenit, en el menú tienes más '
              'opciones para enriquecer tu mundo interior]')    ### pie de página
 st.header(':violet[El camino del Zenit]')   ### cabecera
-st.write(" El recorrido que puedes hacer en esta página te ayudará a conocer y descubrir nuevos aspectos de tu personalidad.  ")
+st.subheader('El Zenit es el punto  más alto situado sobre tu vertical.')
+st.write(" El recorrido que puedes hacer en esta página te ayudará a conocer y descubrir nuevos aspectos de tu personalidad. ")
+st.write("Elevarse sobre lo ya conocido y aprender cosas nuevas es El camino de tu Zenit")
 
 if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos principales
 
@@ -158,75 +158,68 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
     elif opcionElegida == "Tip's exclusivos para ti":
         ## MENU DE ESTA-OPCION DENTRO DEL DESPLEGABLE CENTRAL
-        st.write(f" {nombre.title()} esta sección está en construcción ")
-        st.markdown(" ***seccion de velas, libros, amuletos y varios***")
-        ## MENU DE ESTA-OPCION
+
         tab1, tab2 ,tab3,tab4,tab5 = st.tabs(["Info",":red[Velas]", ":orange[Libros]", ":violet[Amuletos]",":green[Varios]"])
 
         with tab1:
-            st.write("Escoge la opción que quieres")
-            st.write(" la selección es exclusiva para ti")
-
-
+            st.markdown(f"{nombre.title()} *** Estos artículos son sugerencias en el camino de tu Zenit***")
+            st.caption(continuar)
         with tab2:
-
-            st.write('Los colores de las velas apropiadas para ti')
-            st.markdown('Sigue este enlace ---> '
-                        'https://www.amazon.es/Lumaland-Luma-Lab-Vela-Perfumada/dp/B08G1RDFWH?th=1')
-            # image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
-            # st.image(image, width=200)
-
+            st.write('Los colores de las velas influyen el estado de ánimo de las personas')
+            st.write("Listado de velas......")
+            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+            st.caption(continuar)
         with tab3:
-
             st.write('Estos libros son los apropiados para ti')
-            # image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
-            # st.image(image, width=200)
-
+            st.write("Listado de libros......")
+            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+            st.caption(continuar)
         with tab4:
-
-            st.write(' Estos amuletos son los apropiados para ti ')
-            image = Image.open("archivos/imagenesAmuletos/alaAngel.png")
-            st.image(image, width=200)
-            st.write("Para comprar esto [aqui](https://www.amazon.es/)")
-
-
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                opcion = ("Ala de Angel",
+                          "Nudo de Bruja",
+                          "Runa nórdica",
+                          "Moneda de la suerte",
+                          )
+                mostrar = Articulos(opcion)
+                elemento = opcion.index(mostrar.opcionElegida) - 1
+                image = Image.open(f"imagenes/imagenesAmuletos/{mostrar.amuletos()[1][elemento]}")
+                st.image(image, caption=mostrar.amuletos()[0][elemento], width=200)
+                st.write(f"{nombre.title()}, ¿te gusta este amuleto para ti? "
+                         f" Pincha [aquí]({mostrar.amuletos()[2][elemento]})")
+            with col2:
+                st.header("Amuleto de la buena suerte")
+                with open(f"archivos/tips/amuletos") as tip:
+                    contenido = tip.read()
+                    contenido2 = contenido.split("@")
+                    for dato in contenido2:
+                        leer = dato.split("#")
+                        if leer[0] == mostrar.amuletos()[0][elemento]:
+                            st.write(leer[1])
         with tab5:
-
-            st.write('Estos son los varios apropiados para ti')
-            ####
-            opcion =  ("Elige una opcion",
-                      "suerte",
-                      "dinero",
-                       "aaa",
-                       "bbbbb",
-                       "cccc")
-
-
-
-
-
-            ####
-            mostrar = Articulos(opcion)
-            elemento = opcion.index(mostrar.opcionElegida) - 1
-            st.write(f"{mostrar.amuletos()[0][elemento]}{mostrar.amuletos()[1][elemento]}{mostrar.amuletos()[2][elemento]}")
-            amuleto1 = '(https://www.amazon.es/Hztyyier-Amuleto-cl%C3%A1sico-Suerte-Decoraci%C3%B3n/dp/B07VHZLRNC/ref=sr_1_10?keywords=amuletos+de+buena+suerte&qid=1693384521&sr=8-10)'
-            st.write("pincha aqui [link]"+amuleto1)
-            st.markdown('[https://www.amazon.es/]')
-            ###
-            st.write(
-                "Para comprar pincha [aqui](https://www.amazon.es/)")
-            ###
-        st.caption(continuar)
+            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+                 #st.write(f"{mostrar.amuletos()[0][elemento]}{mostrar.amuletos()[1][elemento]}{mostrar.amuletos()[2][elemento]}")
+                    #amuleto1 = '(https://www.amazon.es/Hztyyier-Amuleto-cl%C3%A1sico-Suerte-Decoraci%C3%B3n/dp/B07VHZLRNC/ref=sr_1_10?keywords=amuletos+de+buena+suerte&qid=1693384521&sr=8-10)'
+                    #st.write("pincha aqui [link]"+amuleto1)
+                    # st.markdown('[https://www.amazon.es/]')
+                    # ###
+                    # st.write(
+                    #     "Para comprar pincha [aqui](https://www.amazon.es/)")
+                    # ###
+                    # {mostrar.amuletos()[0][elemento]}
+            st.caption(continuar)
 
 
 
     elif opcionElegida == "Terminar":
-        st.write(f"{nombre.title()} gracias por utilizar esta página en tu camino del Zenit.")
+        st.write(f"{nombre.title()} gracias por utilizar esta página en el camino de tu Zenit.")
         st.write(':blue[Hasta la próxima]')
 
 
 
 else:                   ## SOLICITA INTRODUCIR DATOS PARA ACTIVAR EL DESPLAGABLE CENTRAL
+    st.write("¿Quieres empezar?")
     st.write('Por favor, escribe tu :blue[nombre y fecha de Nacimiento]')
 
 
