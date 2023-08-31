@@ -54,7 +54,29 @@ class Articulos:
             if leer[0] == opcion:
                 return leer[1]
 
+    def velas(self):
+        archivo = f"archivos/enlaces/enlacesVelas"
+        articulo = []
+        imagen = []
+        url = []
+        with open (archivo, encoding='utf=8') as velas:
+            vela = velas.readlines()
+            velas.close()
+            for valor in vela:
+                valor = valor.split(",")
+                articulo.append(valor[0])
+                imagen.append(valor[1])
+                url.append(valor[2])
+            return articulo,imagen,url
 
+    def significadoVela(self,opcion):
+        tip=open(f"archivos/tips/velas","r",encoding="UTF-8")
+        contenido = tip.read()
+        contenido2 = contenido.split("@")
+        for dato in contenido2:
+            leer = dato.split("#")
+            if leer[0] == opcion:
+                return leer[1]
 
 
 

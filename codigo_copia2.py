@@ -166,9 +166,28 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
             st.caption(continuar)
         with tab2:
             st.write('Los colores de las velas influyen el estado de ánimo de las personas')
-
-            # st.write("Listado de velas......")
-            # st.write(" Estamos en construcción, en breve estará disponible toda la información")
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                opcion = ("Vela amarilla",
+                          "Vela azul",
+                          "Vela blanca",
+                          "Vela naranja",
+                          "Vela negra",
+                          "Vela roja",
+                          "Vela verde",
+                          )
+                ### esta lista de articulos debe estar en el mismo orden que el archivo de donde
+                ### lee la información de cada contenido ((ARCHIVO TIPS VELAS))
+                ### Y tb el mismo orden de donde coge los enlaces ((ARCHIVO ENLACES ))
+                mostrar = Articulos(opcion)
+                elemento = opcion.index(mostrar.opcionElegida)
+                image = Image.open(f"imagenes/imagenesVelas/{mostrar.velas()[1][elemento]}")
+                st.image(image, caption=mostrar.velas()[0][elemento], width=200)
+                st.write(f"{nombre.title()}, ¿te gusta este vela para ti? "
+                         f" Pincha [aquí]({mostrar.velas()[2][elemento]})")
+            with col2:
+                st.header("Vela recomendada")
+                st.write(mostrar.significadoVela(mostrar.opcionElegida))
             st.caption(continuar)
 
         with tab3:
@@ -184,7 +203,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 elemento = opcion.index(mostrar.opcionElegida)
                 image = Image.open(f"imagenes/imagenesLibros/{mostrar.libros()[1][elemento]}")
                 st.image(image, caption=mostrar.libros()[0][elemento], width=200)
-                st.write(f"{nombre.title()}, ¿te gusta este amuleto para ti? "
+                st.write(f"{nombre.title()}, ¿te gusta este libro para ti? "
                          f" Pincha [aquí]({mostrar.libros()[2][elemento]})")
             with col2:
                 st.header("Libro recomendado")
