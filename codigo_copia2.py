@@ -23,7 +23,7 @@ st.set_page_config(
 ## DESPLEGABLE DE LA DERECHA
 with st.sidebar:
 
-    st.write("Empezaremos por conocer el significado de tu número personal a través de la fecha de nacimiento,")
+    st.write(" El primer paso es saber como te llamas y tu fecha de nacimiento")
     nombre = st.text_input(" ¿Como te llamas?")
     fechaDeNacimiento = st.date_input("Cúal es tu fecha de nacimiento",      ## CALENDARIO
                                       datetime.datetime.now(),
@@ -81,7 +81,9 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
     elif opcionElegida == "Tu signo del zodiaco":
         signoZodiaco = fecha.zodiaco()
-        st.write(signoZodiaco)
+        st.write(signoZodiaco[1])
+        image = Image.open(f"imagenes/imagenesZodiaco/{signoZodiaco[0]}")
+        st.image(image, width=200)
         st.write(f" {nombre.title()} esta sección está en construcción ")
         st.caption(continuar)
 

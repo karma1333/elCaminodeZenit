@@ -67,7 +67,7 @@ class Numerologia:
                   "leo", "virgo", "libra", "escorpio", "sagitario"]
         for m in range(1, 13):
             if m == int(mes):
-                if int(dia) <= 21:
+                if int(dia) < 21:
                     archivo = f"archivos/zodiaco/{signos[m]}"
 
                 else:
@@ -76,7 +76,10 @@ class Numerologia:
 
         with open(archivo, encoding='utf-8') as z:
             contenido = z.read()
-            return contenido
+            contenido2 = contenido.split("#")
+            z.close()
+
+            return contenido2
 
 
 
