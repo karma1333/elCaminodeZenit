@@ -37,5 +37,22 @@ class NombreN:
             calculo=str(resultado)
         return  calculo
 
+    def significadoVibracion(self,numero):
+        self.numero = numero
+        tip=open(f"archivos/vibracionNombre/numero", encoding="utf-8")
+        contenido = tip.read()
+        contenido2 = contenido.split("@")
+        for dato in contenido2:
+            leer = dato.split("#")
+            if leer[0] == numero:
+                return leer[1]
+
+
+
+
+
+
+
+
 
 

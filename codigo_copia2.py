@@ -16,7 +16,7 @@ st.set_page_config(
         'Report a bug': "mailto:antakarana3@gmail.com",
         'About': " El camino del *Zenit* "}
                 )
-##### ENLACES ####
+
 
 
 
@@ -72,7 +72,12 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
     elif opcionElegida == "Vibración del nombre":
         significado = nombreUsuario.valoresletras()
+
+        vibracion = nombreUsuario.significadoVibracion(significado)
+        st.write(f" {nombre.title()} tu nombre tiene una vibración ")
         st.header(significado)
+        st.write(vibracion)
+
 
     elif opcionElegida == "Tu signo del zodiaco":
         signoZodiaco = fecha.zodiaco()
@@ -162,7 +167,8 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         tab1, tab2 ,tab3,tab4,tab5 = st.tabs(["Info",":red[Velas]", ":orange[Libros]", ":violet[Amuletos]",":green[Varios]"])
 
         with tab1:
-            st.markdown(f"{nombre.title()} *** Estos artículos son sugerencias en el camino de tu Zenit***")
+            st.subheader(f"{nombre.title()}")
+            st.markdown("***Las velas, los libros y los amuletos son sugerencias apropiadas en El camino de tu Zenit***")
             st.caption(continuar)
         with tab2:
             st.write('Los colores de las velas influyen el estado de ánimo de las personas')
@@ -234,15 +240,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
         with tab5:
             st.write(" Estamos en construcción, en breve estará disponible toda la información")
-                 #st.write(f"{mostrar.amuletos()[0][elemento]}{mostrar.amuletos()[1][elemento]}{mostrar.amuletos()[2][elemento]}")
-                    #amuleto1 = '(https://www.amazon.es/Hztyyier-Amuleto-cl%C3%A1sico-Suerte-Decoraci%C3%B3n/dp/B07VHZLRNC/ref=sr_1_10?keywords=amuletos+de+buena+suerte&qid=1693384521&sr=8-10)'
-                    #st.write("pincha aqui [link]"+amuleto1)
-                    # st.markdown('[https://www.amazon.es/]')
-                    # ###
-                    # st.write(
-                    #     "Para comprar pincha [aqui](https://www.amazon.es/)")
-                    # ###
-                    # {mostrar.amuletos()[0][elemento]}
+
             st.caption(continuar)
 
 

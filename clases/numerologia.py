@@ -6,7 +6,10 @@ class Numerologia:
 
 
     def numeroPersonal(self):
-        """ Devuelve un numero entre 1 y 9"""
+        """ Devuelve  la suma de los digitos de la fecha de nacimiento,
+            teniendo en cuenta numeros especiales, mostrando por pantanlla
+            ese numero especial y haciendo la suma igual para reducir la fecha
+            siempre a un digito (entre 1 y 9) """
         especiales = [10,11,13,15,17]
         digitos = []
         calculo = self.fecha.split("/")
@@ -26,7 +29,7 @@ class Numerologia:
 
 
     def numero(self):
-        """ Significado de los números personales"""
+        """    Leer el contenido del archivo según el numero personal"""
 
         archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}"
 
@@ -49,8 +52,6 @@ class Numerologia:
                 total += int(di)
             archivo = f"archivos/numerosPersonales/{total}mas"
 
-        #archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}mas"
-
         with open(archivo, encoding="utf-8") as datos:
             contenido = datos.read()
 
@@ -68,24 +69,16 @@ class Numerologia:
             if m == int(mes):
                 if int(dia) <= 21:
                     archivo = f"archivos/zodiaco/{signos[m]}"
-                    #lista += signos[m]
 
                 else:
                     indice = m +1
                     archivo = f"archivos/zodiaco/{signos[indice]}"
-                    #lista += signos[indice]
 
-        #archivo = f"../archivos/zodiaco/{lista}"
         with open(archivo, encoding='utf-8') as z:
             contenido = z.read()
             return contenido
 
 
-# ana = Numerologia("04/01/1901")
-# numeroP = ana.zodiaco()
-# nu = ana.numero()
-# print(numeroP)
-# print(nu)
 
 
 

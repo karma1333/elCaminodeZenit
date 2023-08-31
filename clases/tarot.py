@@ -3,6 +3,8 @@ from random import choice
 
 import streamlit
 def cartaTarot():
+    """ Acceder a una baraja completa de Tarot
+        y mostrar una carta de esa baraja"""
     numeros=["as","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","paje","caballo","reina","rey"]
     palos=["copas","espadas","oros","palos"]
     arcanos = ["arcanotrece","carro","colgado","diablo","elmundo","emperador","emperatriz","enamorado","ermitano",
@@ -24,14 +26,14 @@ def cartaTarot():
     for arcano in barajaArcanos:
         barajaCompleta.append(arcano)
 
-
     unaCarta = choice(barajaCompleta)
     return unaCarta,baraja,barajaCompleta
 
 
 
-
 def triada():
+    """ Llamar a la función CartaTarot y mostrar tres cartas
+        de la barajacompleta de Tarot"""
     cartas = cartaTarot()
     baraja = cartas[2]
     cartasUsadas=[]
@@ -45,7 +47,3 @@ def triada():
     return cartasUsadas
 
 
-###tirada = cartaTarot()
-###print(tirada[0])
-###tres = triada()
-###print(tres)
