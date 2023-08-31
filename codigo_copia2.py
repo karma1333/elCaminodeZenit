@@ -166,14 +166,31 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
             st.caption(continuar)
         with tab2:
             st.write('Los colores de las velas influyen el estado de ánimo de las personas')
-            st.write("Listado de velas......")
-            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+
+            # st.write("Listado de velas......")
+            # st.write(" Estamos en construcción, en breve estará disponible toda la información")
             st.caption(continuar)
+
         with tab3:
-            st.write('Estos libros son los apropiados para ti')
-            st.write("Listado de libros......")
-            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                opcion = ("Tus zonas erroneas",
+                          "Los cuatro acuerdos",
+                           )
+                ### esta lista de articulos debe estar en el mismo orden que el archivo de donde
+                ### lee la información de cada contenido ((ARCHIVO TIPS LIBROS))
+                ### Y tb el mismo orden de donde coge los enlaces ((ARCHIVO ENLACES ))
+                mostrar = Articulos(opcion)
+                elemento = opcion.index(mostrar.opcionElegida)
+                image = Image.open(f"imagenes/imagenesLibros/{mostrar.libros()[1][elemento]}")
+                st.image(image, caption=mostrar.libros()[0][elemento], width=200)
+                st.write(f"{nombre.title()}, ¿te gusta este amuleto para ti? "
+                         f" Pincha [aquí]({mostrar.libros()[2][elemento]})")
+            with col2:
+                st.header("Libro recomendado")
+                st.write(mostrar.significadoLibro(mostrar.opcionElegida))
             st.caption(continuar)
+
         with tab4:
             col1, col2 = st.columns([1, 1])
             with col1:
@@ -182,21 +199,20 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                           "Runa nórdica",
                           "Moneda de la suerte",
                           )
+                ### esta lista de articulos debe estar en el mismo orden que el archivo de donde
+                ### lee la información de cada contenido ((ARCHIVO TIPS AMULETOS))
+                ### Y tb el mismo orden de donde coge los enlaces ((ARCHIVO ENLACES ))
                 mostrar = Articulos(opcion)
-                elemento = opcion.index(mostrar.opcionElegida) - 1
+                elemento = opcion.index(mostrar.opcionElegida)
                 image = Image.open(f"imagenes/imagenesAmuletos/{mostrar.amuletos()[1][elemento]}")
                 st.image(image, caption=mostrar.amuletos()[0][elemento], width=200)
                 st.write(f"{nombre.title()}, ¿te gusta este amuleto para ti? "
                          f" Pincha [aquí]({mostrar.amuletos()[2][elemento]})")
             with col2:
                 st.header("Amuleto de la buena suerte")
-                with open(f"archivos/tips/amuletos") as tip:
-                    contenido = tip.read()
-                    contenido2 = contenido.split("@")
-                    for dato in contenido2:
-                        leer = dato.split("#")
-                        if leer[0] == mostrar.amuletos()[0][elemento]:
-                            st.write(leer[1])
+                st.write(mostrar.significadoAmuleto(mostrar.opcionElegida))
+
+
         with tab5:
             st.write(" Estamos en construcción, en breve estará disponible toda la información")
                  #st.write(f"{mostrar.amuletos()[0][elemento]}{mostrar.amuletos()[1][elemento]}{mostrar.amuletos()[2][elemento]}")
