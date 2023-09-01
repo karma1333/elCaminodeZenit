@@ -47,3 +47,4 @@ def triada():
     return cartasUsadas
 
 
+#def interpretacion():

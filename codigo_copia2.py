@@ -110,6 +110,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                     st.image(image, width=200)
 
             with col2:
+
                 st.subheader("aqui vendría el texto")
 
         with tab2:
