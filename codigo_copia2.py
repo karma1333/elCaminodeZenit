@@ -1,10 +1,10 @@
 from clases.numerologia import *
-from clases.tarot import *
 from clases.nombre import *
 import datetime
 import streamlit as st
 from PIL import Image
 from clases.articulos import *
+from clases.leerTarot import *
 
 st.set_page_config(
     page_title="El camino del Zenit",
@@ -23,9 +23,9 @@ st.set_page_config(
 ## DESPLEGABLE DE LA DERECHA
 with st.sidebar:
 
-    st.write(" El primer paso es saber como te llamas y tu fecha de nacimiento")
+    st.write("Escribe tu nombre y tu selecciona tu fecha de nacimiento en el calendario")
     nombre = st.text_input(" ¿Como te llamas?")
-    fechaDeNacimiento = st.date_input("Cúal es tu fecha de nacimiento",      ## CALENDARIO
+    fechaDeNacimiento = st.date_input("¿Cúal es tu fecha de nacimiento?",      ## CALENDARIO
                                       datetime.datetime.now(),
                                       datetime.date(1900, 1, 1),
                                       datetime.date(2030, 1, 1),
@@ -34,12 +34,13 @@ with st.sidebar:
     fechaDeNacimiento = fechaDeNacimiento.strftime("%d/%m/%Y")        ### formato de fecha para la claseNumerologia
     actual = datetime.datetime.now().strftime("%d/%m/%Y")             ### fecha actual
 
-continuar = (':violet[Si quieres continuar el camino del Zenit, en el menú tienes más '
+continuar = (':violet[Si quieres continuar tu aprendizaje, en el menú tienes más '
              'opciones para enriquecer tu mundo interior]')    ### pie de página
 st.header(':violet[El camino del Zenit]')   ### cabecera
-st.subheader('El Zenit es el punto  más alto situado sobre tu vertical.')
-st.write(" El recorrido que puedes hacer en esta página te ayudará a conocer y descubrir nuevos aspectos de tu personalidad. ")
-st.write("Elevarse sobre lo ya conocido y aprender cosas nuevas es El camino de tu Zenit")
+st.markdown("***El Zenit es el punto  más alto situado sobre tu vertical.***")
+st.write("")
+st.write(":moon: **____El recorrido que puedes hacer en esta página te ayudará a conocer nuevos aspectos de tu personalidad.____** :moon:")
+
 
 if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos principales
 
@@ -52,20 +53,23 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
     opcion = ("Elige una opcion",
               "Número personal según tu fecha de nacimiento",
               "Vibración del nombre",
-              "Tu signo del zodiaco",
-              "Tirada de cartas de Tarot",
+              "Tu signo del zodíaco",
+              "Cartas de Tarot",
               "Tip's exclusivos para ti",
               "Terminar",)
     opcionElegida = opciones(opcion)         ## funcion: desplegable
 
     if opcionElegida == "Número personal según tu fecha de nacimiento":
-        st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
+        #st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
         st.header(numeroP)
+        if numeroP >=13:
+            st.markdown(f"{nombre.title()} ***tienes un numero kármico***")
         ## MENU DE ESTA-OPCIÓN DENTRO DEL DESPLEGABLE CENTRAL
-        tab1, tab2 = st.tabs([":red[Lección de vida]", ":red[Historia de tu número personal]"])
+        tab1, tab2 = st.tabs([":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
         with tab1:
             st.write(principio[0])
             st.caption(continuar)
+
         with tab2:
             historico = fecha.numeroHistorico()
             st.write(historico)
@@ -74,84 +78,118 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         significado = nombreUsuario.valoresletras()
 
         vibracion = nombreUsuario.significadoVibracion(significado)
-        st.write(f" {nombre.title()} tu nombre tiene una vibración ")
-        st.header(significado)
-        st.write(vibracion)
+        st.markdown(f" **El nombre {nombre.title()} posee una vibración que dice:**")
+        # st.header(significado)
+        st.markdown(f":star: {vibracion}")
+        st.write(" ¿Te gustaría saber más..?")
+        st.write("*******")
+        st.write(" Estamos en construcción, en breve habrá mas informacion sobre la vibración de tu nombre")
+        st.caption(continuar)
 
 
-    elif opcionElegida == "Tu signo del zodiaco":
+    elif opcionElegida == "Tu signo del zodíaco":
         signoZodiaco = fecha.zodiaco()
         st.write(signoZodiaco[1])
         image = Image.open(f"imagenes/imagenesZodiaco/{signoZodiaco[0]}")
         st.image(image, width=200)
-        st.write(f" {nombre.title()} esta sección está en construcción ")
+        st.write(" ¿Te gustaría saber más..?")
+        st.write("*******")
+        st.write(" Estamos en construcción, en breve habrá mas informacion sobre tu signo del zodíaco")
         st.caption(continuar)
 
-    elif opcionElegida == "Tirada de cartas de Tarot":
+    elif opcionElegida == "Cartas de Tarot":
         ## MENU DE ESTA-OPCION DENTRO DEL DESPLEGABLE CENTRAL
         tab1, tab2 = st.tabs([":red[Tirada una Carta de Tarot]", ":red[Tirada de tres cartas Tarot]"])
 
-        with tab1:
+        with (tab1):
+
             girar = st.checkbox('Girar la carta')       ## ACCION DE REVERSO Y ANVERSO
-            col1, col2 = st.columns([1, 2])             ## MENU DE ESTA-OPCION
+            col1, col2 = st.columns([1,3])             ## MENU DE ESTA-OPCION
             tirada = cartaTarot()
+            leer = LecturaTarot(tirada[0])
+            lectura = leer.interpretacion()
+
 
             with col1:
 
                 if girar:                       ## GIRAR AL ANVERSO
                     if tirada[0] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tirada[0]}.png")
-                        st.image(image, width=200)
+                        st.image(image, caption=lectura[0].title(), width=200)
+
+
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tirada[0]}.jpg")
-                        st.image(image, width=200)
+                        st.image(image,caption=lectura[0].title(), width=200)
+
                 else:                       ## REVERSO
                     image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
                     st.image(image, width=200)
 
-            with col2:
 
-                st.subheader("aqui vendría el texto")
+            with col2:
+                if not girar:
+                    st.write("Haz click en la casilla de GIRAR para descubrir tu carta")
+                else:
+
+                    st.write(lectura[1])
+            st.caption(continuar)
 
         with tab2:
             mostrar = st.checkbox('Girar las tres cartas')   ## ACCION DE REVERSO Y ANVERSO
+            st.write("Haz click en la casilla de GIRAR para descubrir tus cartas")
             col1, col2, col3 = st.columns([1,1,1])           ## MENU DE ESTA-OPCION
             tirada = cartaTarot()
             tiradatres = triada()
 
             if mostrar:             ## MOSTRAR EL ANVERSO
                 with col1:
+                    st.write("Situación que  viene de tu pasado")
+                    leer1 = LecturaTarot(tiradatres[0])
+                    lectura1 = leer1.interpretacion()
+
+
                     if tiradatres[0] in tirada[1]:
+
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[0]}.png")
-                        st.image(image, width=200 )
-                        st.write(" ESte carta indica:")
+                        st.image(image,caption=lectura1[0], width=200 )
+                        st.write(lectura1[1])
 
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[0]}.jpg")
-                        st.image(image, width=200)
-                        st.write("esta carta indica")
+                        st.image(image,caption=lectura1[0], width=200)
+                        st.write(lectura1[1])
+
 
                 with col2:
+                    leer2 = LecturaTarot(tiradatres[1])
+                    lectura2 = leer2.interpretacion()
+                    st.write(" Tu preocupación principal")
                     if tiradatres[1] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[1]}.png")
-                        st.image(image,width=200 )
-                        st.write(" ESte carta indica:")
-
+                        st.image(image,caption=lectura2[0],width=200 )
+                        st.write(lectura2[1])
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[1]}.jpg")
-                        st.image(image, width=200)
-                        st.write(" ESte carta indica:")
+                        st.image(image,caption=lectura2[0], width=200)
+                        st.write(lectura2[1])
 
                 with col3:
+                    leer3 = LecturaTarot(tiradatres[2])
+                    lectura3 = leer3.interpretacion()
+                    st.write("Influencia que va aumentando")
                     if tiradatres[2] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[2]}.png")
-                        st.image(image, width=200)
-                        st.write(" ESte carta indica:")
+                        st.image(image,caption=lectura3[0], width=200)
+                        st.write(lectura3[1])
 
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[2]}.jpg")
-                        st.image(image, width=200)
-                        st.write(" ESte carta indica:")
+                        st.image(image,caption=lectura3[0], width=200)
+                        leer3 = LecturaTarot(tiradatres[2])
+                        lectura3 = leer3.interpretacion()
+                        st.write(lectura3[1])
+                st.caption(continuar)
 
             else:       ##  REVERSO
                 with col1:
@@ -171,10 +209,13 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
         with tab1:
             st.subheader(f"{nombre.title()}")
-            st.markdown("***Las velas, los libros y los amuletos son sugerencias apropiadas en El camino de tu Zenit***")
+            st.markdown(':candle: ***Los colores de las velas influyen en el estado de ánimo.***')
+            st.markdown(':book: ***Los libros ofrecen otra perspectiva de las situaciones.*** ')
+            st.markdown(':star: ***Los amuletos son un apoyo en muchos momentos de la vida.***')
+            st.markdown("******")
             st.caption(continuar)
         with tab2:
-            st.write('Los colores de las velas influyen el estado de ánimo de las personas')
+
             col1, col2 = st.columns([1, 1])
             with col1:
                 opcion = ("Vela amarilla",
@@ -191,11 +232,11 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 mostrar = Articulos(opcion)
                 elemento = opcion.index(mostrar.opcionElegida)
                 image = Image.open(f"imagenes/imagenesVelas/{mostrar.velas()[1][elemento]}")
-                st.image(image, caption=mostrar.velas()[0][elemento], width=200)
+                st.image(image, width=200)
                 st.write(f"{nombre.title()}, ¿te gusta este vela para ti? "
                          f" Pincha [aquí]({mostrar.velas()[2][elemento]})")
             with col2:
-                st.header("Vela recomendada")
+                st.subheader(mostrar.velas()[0][elemento])
                 st.write(mostrar.significadoVela(mostrar.opcionElegida))
             st.caption(continuar)
 
@@ -211,11 +252,11 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 mostrar = Articulos(opcion)
                 elemento = opcion.index(mostrar.opcionElegida)
                 image = Image.open(f"imagenes/imagenesLibros/{mostrar.libros()[1][elemento]}")
-                st.image(image, caption=mostrar.libros()[0][elemento], width=200)
+                st.image(image, width=200)
                 st.write(f"{nombre.title()}, ¿te gusta este libro para ti? "
                          f" Pincha [aquí]({mostrar.libros()[2][elemento]})")
             with col2:
-                st.header("Libro recomendado")
+                st.subheader(mostrar.libros()[0][elemento])
                 st.write(mostrar.significadoLibro(mostrar.opcionElegida))
             st.caption(continuar)
 
@@ -233,16 +274,16 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 mostrar = Articulos(opcion)
                 elemento = opcion.index(mostrar.opcionElegida)
                 image = Image.open(f"imagenes/imagenesAmuletos/{mostrar.amuletos()[1][elemento]}")
-                st.image(image, caption=mostrar.amuletos()[0][elemento], width=200)
+                st.image(image, width=200)
                 st.write(f"{nombre.title()}, ¿te gusta este amuleto para ti? "
                          f" Pincha [aquí]({mostrar.amuletos()[2][elemento]})")
             with col2:
-                st.header("Amuleto de la buena suerte")
+                st.subheader(mostrar.amuletos()[0][elemento])
                 st.write(mostrar.significadoAmuleto(mostrar.opcionElegida))
 
 
         with tab5:
-            st.write(" Estamos en construcción, en breve estará disponible toda la información")
+            st.write(" Estamos en construcción, en breve habrá más información disponible.")
 
             st.caption(continuar)
 
@@ -252,10 +293,15 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         st.write(f"{nombre.title()} gracias por utilizar esta página en el camino de tu Zenit.")
         st.write(':blue[Hasta la próxima]')
 
+### INFORMACIÓN PARA EL USUARIO PARA QUE SEPA DE QUE VA LA PÁGINA Y SOLICITAR DATOS PARA
+### ACTIVAR EL DESPLEGABLE
 
-
-else:                   ## SOLICITA INTRODUCIR DATOS PARA ACTIVAR EL DESPLAGABLE CENTRAL
-    st.write("¿Quieres empezar?")
+else:
+    st.markdown(":star: *Descubrirás tu número personal y la vibración de tu nombre*")
+    st.write(":star: *Puedes conocer aspectos sobre tu signo del zodiaco* ")
+    st.write(":star: *Sección de tarot, donde puedes realizar tu lectura de cartas*")
+    st.write(":star: *Sección velas, amuletos y libros recomendados*")
+    st.write("***¿Quieres empezar?***")
     st.write('Por favor, escribe tu :blue[nombre y fecha de Nacimiento]')
 
 

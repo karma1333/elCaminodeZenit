@@ -10,7 +10,7 @@ class Numerologia:
             teniendo en cuenta numeros especiales, mostrando por pantanlla
             ese numero especial y haciendo la suma igual para reducir la fecha
             siempre a un digito (entre 1 y 9) """
-        especiales = [10,11,13,15,17]
+        especiales = [11,13,15,16,19]
         digitos = []
         calculo = self.fecha.split("/")
         for numero in calculo:
@@ -24,7 +24,7 @@ class Numerologia:
             fin = suma1 + suma2
             return fin
         else:
-            return suma
+           return suma
 
 
 
