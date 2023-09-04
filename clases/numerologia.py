@@ -39,9 +39,9 @@ class Numerologia:
             contenido = datos.read()
             contenido2 = contenido.split("@")
         datos.close()
-        presentacion = contenido2[0]
-        definicion = contenido2[1]
-        return presentacion,definicion
+        # presentacion = contenido2[0]
+        # definicion = contenido2[1]
+        return contenido2
 
     def numeroHistorico(self):
         """ Significado histórico de los números personales"""
@@ -58,9 +58,11 @@ class Numerologia:
 
         with open(archivo, encoding="utf-8") as datos:
             contenido = datos.read()
+            contenido2 = contenido.split("@")
+
 
         datos.close()
-        return contenido
+        return contenido2
 
     def zodiaco(self):
         fecha = self.fecha.split("/")

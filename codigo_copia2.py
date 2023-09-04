@@ -63,14 +63,19 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         #st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
         st.header(numeroP)
 
-        if numeroP >=11:
+        if numeroP ==11:
+            st.markdown(f"{nombre.title()} ***tienes un numero maestro***")
+        elif numeroP > 11:
             st.markdown(f"{nombre.title()} ***tienes un numero kármico***")
         ## MENU DE ESTA-OPCIÓN DENTRO DEL DESPLEGABLE CENTRAL
         tab1, tab2 = st.tabs([":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
         with tab1:
-            st.write(principio[0])
-            if numeroP in [11,13,15,16,19]:
-                #suma = sum(str(numeroP))
+            #st.write(principio[0])
+            st.markdown(f":book: {principio[0]}")
+            st.markdown(f":star: {principio[1]}")
+            st.markdown(f":star: {principio[2]}")
+            st.markdown(f":star: {principio[3]}")
+            if numeroP in [13,15,16,19]:
                 suma1 = int(numeroP // 10)
                 suma2 = int(numeroP % 10)
                 suma = suma1 + suma2
@@ -79,11 +84,19 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                     contenido = datos.read()
                     contenido2 = contenido.split("@")
                 datos.close()
-                st.write(contenido2[0])
+                st.markdown(f":book: {contenido2[0]}")
+                st.markdown(f":star: {contenido2[1]}")
+                st.markdown(f":star: {contenido2[2]}")
+                st.markdown(f":star: {contenido2[3]}")
+                st.write("")
             st.caption(continuar)
         with tab2:
             historico = fecha.numeroHistorico()
-            st.write(historico)
+            st.write(historico[0])
+            st.markdown(f":star: {historico[1]}")
+            st.markdown(f":star: {historico[2]}")
+            st.markdown(f":star: {historico[3]}")
+
 
     elif opcionElegida == "Vibración del nombre":
         significado = nombreUsuario.valoresletras()
@@ -157,7 +170,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
             if mostrar:             ## MOSTRAR EL ANVERSO
                 with col1:
-                    st.write("Situación que  viene de tu pasado")
+
                     leer1 = LecturaTarot(tiradatres[0])
                     lectura1 = leer1.interpretacion()
 
@@ -165,43 +178,54 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                     if tiradatres[0] in tirada[1]:
 
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[0]}.png")
-                        st.image(image,caption=lectura1[0], width=200 )
+                        st.image(image,caption=lectura1[0].title(), width=200 )
+                        st.markdown(f" ***Situación que  viene de tu pasado***")
+                        st.write("*****")
                         st.write(lectura1[1])
 
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[0]}.jpg")
-                        st.image(image,caption=lectura1[0], width=200)
+                        st.image(image,caption=lectura1[0].title(), width=200)
+                        st.markdown(f" ***Situación que  viene de tu pasado***")
+                        st.write("*****")
                         st.write(lectura1[1])
 
 
                 with col2:
                     leer2 = LecturaTarot(tiradatres[1])
                     lectura2 = leer2.interpretacion()
-                    st.write(" Tu preocupación principal")
+
                     if tiradatres[1] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[1]}.png")
-                        st.image(image,caption=lectura2[0],width=200 )
+                        st.image(image,caption=lectura2[0].title(),width=200 )
+                        st.markdown(f" ***Tu preocupación principal***")
+                        st.write("*****")
                         st.write(lectura2[1])
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[1]}.jpg")
-                        st.image(image,caption=lectura2[0], width=200)
+                        st.image(image,caption=lectura2[0].title(), width=200)
+                        st.markdown(f" ***Tu preocupación principal***")
+                        st.write("*****")
                         st.write(lectura2[1])
 
                 with col3:
                     leer3 = LecturaTarot(tiradatres[2])
                     lectura3 = leer3.interpretacion()
-                    st.write("Influencia que va aumentando")
+
                     if tiradatres[2] in tirada[1]:
                         image = Image.open(f"imagenes/cartasTarot/{tiradatres[2]}.png")
-                        st.image(image,caption=lectura3[0], width=200)
+                        st.image(image,caption=lectura3[0].title(), width=200)
+                        st.markdown(f" ***Influencia que va aumentando***")
+                        st.write("*****")
                         st.write(lectura3[1])
 
                     else:
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[2]}.jpg")
-                        st.image(image,caption=lectura3[0], width=200)
-                        leer3 = LecturaTarot(tiradatres[2])
-                        lectura3 = leer3.interpretacion()
+                        st.image(image,caption=lectura3[0].title(), width=200)
+                        st.markdown(f" ***Influencia que va aumentando***")
+                        st.write("**")
                         st.write(lectura3[1])
+                st.write("")
                 st.caption(continuar)
 
             else:       ##  REVERSO
