@@ -23,9 +23,9 @@ class Articulos:
         tip=open(f"archivos/tips/amuletos","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
+        tip.close()
         for dato in contenido2:
             leer = dato.split("#")
-            #resultado = Articulos.amuletos(self)
             print(leer)
             if leer[0] == opcion:
                 return leer[1]
@@ -49,6 +49,7 @@ class Articulos:
         tip=open(f"archivos/tips/libros","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
+        tip.close()
         for dato in contenido2:
             leer = dato.split("#")
             if leer[0] == opcion:
@@ -73,6 +74,7 @@ class Articulos:
         tip=open(f"archivos/tips/velas","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
+        tip.close()
         for dato in contenido2:
             leer = dato.split("#")
             if leer[0] == opcion:

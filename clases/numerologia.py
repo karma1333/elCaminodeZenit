@@ -18,13 +18,15 @@ class Numerologia:
                 digitos.append(int(digito))
         suma = sum(digitos)
         if suma not in especiales:
-
-            suma1 = int(suma / 10)
-            suma2 = int(suma % 10)
-            fin = suma1 + suma2
-            return fin
+            while len(str(suma))>1:
+                suma1 = int(suma / 10)
+                suma2 = int(suma % 10)
+                suma = suma1 + suma2
+                if suma in especiales:
+                    return suma
+            return suma
         else:
-           return suma
+            return suma
 
 
 
@@ -44,12 +46,14 @@ class Numerologia:
     def numeroHistorico(self):
         """ Significado histórico de los números personales"""
         historico = Numerologia.numeroPersonal(self)
-        if int(historico) < 10:
+        if int(historico) <=9:
             archivo = f"archivos/numerosPersonales/{Numerologia.numeroPersonal(self)}mas"
         else:
             total = 0
             for di in str(historico):
                 total += int(di)
+            if total==19:
+                total = 1
             archivo = f"archivos/numerosPersonales/{total}mas"
 
         with open(archivo, encoding="utf-8") as datos:

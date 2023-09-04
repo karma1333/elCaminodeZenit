@@ -19,15 +19,10 @@ class NombreN:
                      }
 
         lista =[]
-
-
         for n,lt in conversor.items():
-
-
             for letra in self.nombre.lower():
                 if letra in lt:
                     lista.append(n)
-
 
         calculo = str(sum(lista))
         while len(calculo)>1:
@@ -42,6 +37,7 @@ class NombreN:
         tip=open(f"archivos/vibracionNombre/numero", encoding="utf-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
+        tip.close()
         for dato in contenido2:
             leer = dato.split("#")
             if leer[0] == numero:

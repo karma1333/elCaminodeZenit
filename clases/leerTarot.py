@@ -55,10 +55,9 @@ class LecturaTarot:
         with open(archivo, encoding="utf-8") as leer:
             contenido = leer.read()
             contenido2 = contenido.split("@")
-
+            leer.close()
             for dato in contenido2:
                 leer = dato.split("#")
-
                 if self.carta == leer[0]:
                     separar = leer[0].split("de")
                     correcto = " de ".join(separar)

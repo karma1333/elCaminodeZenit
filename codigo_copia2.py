@@ -62,14 +62,25 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
     if opcionElegida == "Número personal según tu fecha de nacimiento":
         #st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
         st.header(numeroP)
-        if numeroP >=13:
+
+        if numeroP >=11:
             st.markdown(f"{nombre.title()} ***tienes un numero kármico***")
         ## MENU DE ESTA-OPCIÓN DENTRO DEL DESPLEGABLE CENTRAL
         tab1, tab2 = st.tabs([":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
         with tab1:
             st.write(principio[0])
+            if numeroP in [11,13,15,16,19]:
+                #suma = sum(str(numeroP))
+                suma1 = int(numeroP // 10)
+                suma2 = int(numeroP % 10)
+                suma = suma1 + suma2
+                archivo = f"archivos/numerosPersonales/{suma}"
+                with open(archivo, encoding="utf-8") as datos:
+                    contenido = datos.read()
+                    contenido2 = contenido.split("@")
+                datos.close()
+                st.write(contenido2[0])
             st.caption(continuar)
-
         with tab2:
             historico = fecha.numeroHistorico()
             st.write(historico)
@@ -79,7 +90,6 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
         vibracion = nombreUsuario.significadoVibracion(significado)
         st.markdown(f" **El nombre {nombre.title()} posee una vibración que dice:**")
-        # st.header(significado)
         st.markdown(f":star: {vibracion}")
         st.write(" ¿Te gustaría saber más..?")
         st.write("*******")
@@ -89,9 +99,12 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
 
     elif opcionElegida == "Tu signo del zodíaco":
         signoZodiaco = fecha.zodiaco()
-        st.write(signoZodiaco[1])
         image = Image.open(f"imagenes/imagenesZodiaco/{signoZodiaco[0]}")
         st.image(image, width=200)
+        st.markdown(f":star: {signoZodiaco[1]}")
+        st.markdown(f":star: {signoZodiaco[2]}")
+        st.markdown(f":star: {signoZodiaco[3]}")
+
         st.write(" ¿Te gustaría saber más..?")
         st.write("*******")
         st.write(" Estamos en construcción, en breve habrá mas informacion sobre tu signo del zodíaco")
