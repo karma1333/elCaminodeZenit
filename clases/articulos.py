@@ -5,6 +5,8 @@ class Articulos:
         self.opcionElegida = opciones(opcionElegida)
 
     def amuletos(self):
+        """ leer el archvo de los infoamuletos para
+            nombre amuleto, imagen y url"""
         archivo = f"archivos/enlaces/enlacesAmuletos"
         articulo = []
         imagen = []
@@ -20,6 +22,7 @@ class Articulos:
             return articulo,imagen,url
 
     def significadoAmuleto(self,opcion):
+        """ leer el archivo de la información de los amuletos"""
         tip=open(f"archivos/tips/amuletos","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
@@ -31,6 +34,8 @@ class Articulos:
                 return leer[1]
 
     def libros(self):
+        """ leer el archvio de la infolibros
+         para nombre libros, imagen y url """
         archivo = f"archivos/enlaces/enlacesLibros"
         articulo = []
         imagen = []
@@ -46,6 +51,7 @@ class Articulos:
             return articulo,imagen,url
 
     def significadoLibro(self,opcion):
+        """ leer el archivo de la información de los libros"""
         tip=open(f"archivos/tips/libros","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")
@@ -56,6 +62,8 @@ class Articulos:
                 return leer[1]
 
     def velas(self):
+        """ leer el archivo de la infovelas
+                 para nombre velas, imagen y url """
         archivo = f"archivos/enlaces/enlacesVelas"
         articulo = []
         imagen = []
@@ -71,6 +79,7 @@ class Articulos:
             return articulo,imagen,url
 
     def significadoVela(self,opcion):
+        """ leer el archivo de la información de los libros"""
         tip=open(f"archivos/tips/velas","r",encoding="UTF-8")
         contenido = tip.read()
         contenido2 = contenido.split("@")

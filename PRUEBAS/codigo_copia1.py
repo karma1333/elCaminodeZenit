@@ -109,7 +109,7 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable l
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tirada[0]}.jpg")
                         st.image(image, width=200)
                 else:
-                    image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
+                    image = Image.open("../imagenes/cartasTarot/reverso/reverso200.png")
                     st.image(image, width=200)
 
             with col2:
@@ -157,13 +157,13 @@ if nombre != "" and fechaDeNacimiento != actual:         ### menú desplegable l
 
             else:
                 with col1:
-                    image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
+                    image = Image.open("../imagenes/cartasTarot/reverso/reverso200.png")
                     st.image(image, width=200)
                 with col2:
-                    image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
+                    image = Image.open("../imagenes/cartasTarot/reverso/reverso200.png")
                     st.image(image, width=200)
                 with col3:
-                    image = Image.open("imagenes/cartasTarot/reverso/reverso200.png")
+                    image = Image.open("../imagenes/cartasTarot/reverso/reverso200.png")
                     st.image(image, width=200)
 
         # # with tab3:

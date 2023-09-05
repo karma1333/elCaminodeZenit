@@ -1,3 +1,12 @@
+""" Programa con salida gráfica a traves de streamlit que
+    solicita datos al usuario y  muestra contenido que está almacenado
+    en archivos.
+    En el menú principal hay varias opciones que derivan  en otras opciones.
+
+    Programa creado por Ana María Caballero Rodríguez
+"""
+
+
 from clases.numerologia import *
 from clases.nombre import *
 import datetime
@@ -39,7 +48,8 @@ continuar = (':violet[Si quieres continuar tu aprendizaje, en el menú tienes m�
 st.header(':violet[El camino del Zenit]')   ### cabecera
 st.markdown("***El Zenit es el punto  más alto situado sobre tu vertical.***")
 st.write("")
-st.write(":moon: **____El recorrido que puedes hacer en esta página te ayudará a conocer nuevos aspectos de tu personalidad.____** :moon:")
+st.write(":moon: **____El recorrido que puedes hacer en esta página te ayudará a conocer nuevos aspectos de "
+         "tu personalidad.____** :moon:")
 
 
 if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos principales
@@ -60,17 +70,19 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
     opcionElegida = opciones(opcion)         ## funcion: desplegable
 
     if opcionElegida == "Número personal según tu fecha de nacimiento":
-        #st.markdown(f'***{nombre.title()} este es tu número personal según tu fecha de Nacimiento***')
         st.header(numeroP)
 
         if numeroP ==11:
             st.markdown(f"{nombre.title()} ***tienes un numero maestro***")
         elif numeroP > 11:
             st.markdown(f"{nombre.title()} ***tienes un numero kármico***")
+
+
         ## MENU DE ESTA-OPCIÓN DENTRO DEL DESPLEGABLE CENTRAL
         tab1, tab2 = st.tabs([":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
+
         with tab1:
-            #st.write(principio[0])
+
             st.markdown(f":book: {principio[0]}")
             st.markdown(f":star: {principio[1]}")
             st.markdown(f":star: {principio[2]}")
@@ -90,6 +102,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 st.markdown(f":star: {contenido2[3]}")
                 st.write("")
             st.caption(continuar)
+
         with tab2:
             historico = fecha.numeroHistorico()
             st.write(historico[0])
@@ -124,6 +137,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         st.caption(continuar)
 
     elif opcionElegida == "Cartas de Tarot":
+
         ## MENU DE ESTA-OPCION DENTRO DEL DESPLEGABLE CENTRAL
         tab1, tab2 = st.tabs([":red[Tirada una Carta de Tarot]", ":red[Tirada de tres cartas Tarot]"])
 

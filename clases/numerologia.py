@@ -39,8 +39,6 @@ class Numerologia:
             contenido = datos.read()
             contenido2 = contenido.split("@")
         datos.close()
-        # presentacion = contenido2[0]
-        # definicion = contenido2[1]
         return contenido2
 
     def numeroHistorico(self):
@@ -65,6 +63,8 @@ class Numerologia:
         return contenido2
 
     def zodiaco(self):
+        """ cálculo según el dato fecha para mostrar
+        los signos del zodiaco """
         fecha = self.fecha.split("/")
         dia = fecha[0]
         mes = fecha[1]

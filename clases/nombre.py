@@ -33,6 +33,8 @@ class NombreN:
         return  calculo
 
     def significadoVibracion(self,numero):
+        """ leer el archivo para el contenido del
+        dato numero (1 al 9)"""
         self.numero = numero
         tip=open(f"archivos/vibracionNombre/numero", encoding="utf-8")
         contenido = tip.read()
