@@ -75,13 +75,27 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         if numeroP ==11:
             st.markdown(f"{nombre.title()} ***tienes un numero maestro***")
         elif numeroP > 11:
-            st.markdown(f"{nombre.title()} ***tienes un numero kármico***")
+            st.markdown(f"{nombre.title()} ***tienes un fecha kármica***")
 
 
         ## MENU DE ESTA-OPCIÓN DENTRO DEL DESPLEGABLE CENTRAL
-        tab1, tab2 = st.tabs([":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
+        tab1, tab2, tab3 = st.tabs([":violet[info]", ":violet[Lección de vida]", ":violet[Curiosidades de tu número personal]"])
 
         with tab1:
+            st.write(" El número personal se calcula, sumando los dígitos de tu fecha de nacimiento")
+            st.write("")
+            st.markdown(f"Fecha ejemplo: 03/02/1990 ----> 0+3+0+2+1+9+9+0 = 6")
+            st.markdown(f" ***Número personal 6***")
+            st.write("")
+            st.markdown(f"Fecha ejemplo: 03/02/2008 ----> 0+3+0+2+2+0+0+8 = 15  ----> 1+5 = 6")
+            st.markdown(f" ***Fecha kármica 15 y número personal 6*** ")
+            st.write("")
+            st.markdown(f" :star: En el cálculo del :violet[número personal] se tienen en cuenta las "
+                        f" ***fechas kármicas*** y siempre se reducen a un solo dígito, "
+                        f"salvo el 11 que es ***número maestro***")
+
+
+        with tab2:
 
             st.markdown(f":book: {principio[0]}")
             st.markdown(f":star: {principio[1]}")
@@ -103,7 +117,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                 st.write("")
             st.caption(continuar)
 
-        with tab2:
+        with tab3:
             historico = fecha.numeroHistorico()
             st.write(historico[0])
             st.markdown(f":star: {historico[1]}")
@@ -144,7 +158,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
         with (tab1):
 
             girar = st.checkbox('Girar la carta')       ## ACCION DE REVERSO Y ANVERSO
-            col1, col2 = st.columns([1,3])             ## MENU DE ESTA-OPCION
+            col1, col2 = st.columns([1,2])             ## MENU DE ESTA-OPCION
             tirada = cartaTarot()
             leer = LecturaTarot(tirada[0])
             lectura = leer.interpretacion()
@@ -237,7 +251,7 @@ if nombre != "" and fechaDeNacimiento != actual:        ## solicitar datos princ
                         image = Image.open(f"imagenes/cartasTarot/arcanos/{tiradatres[2]}.jpg")
                         st.image(image,caption=lectura3[0].title(), width=200)
                         st.markdown(f" ***Influencia que va aumentando***")
-                        st.write("**")
+                        st.write("*****")
                         st.write(lectura3[1])
                 st.write("")
                 st.caption(continuar)
