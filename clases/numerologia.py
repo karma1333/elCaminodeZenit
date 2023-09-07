@@ -66,19 +66,76 @@ class Numerologia:
         """ cálculo según el dato fecha para mostrar
         los signos del zodiaco """
         fecha = self.fecha.split("/")
-        dia = fecha[0]
-        mes = fecha[1]
-        lista = ""
-        signos = ["","capricornio","acuario", "piscis", "aries", "tauro", "geminis", "Cáncer",
-                  "leo", "virgo", "libra", "escorpio", "sagitario"]
-        for m in range(1, 13):
-            if m == int(mes):
-                if int(dia) < 21:
-                    archivo = f"archivos/zodiaco/{signos[m]}"
+        comparador = []
+        indice = 0
+        if indice != 4:
+            for f in fecha:
+                indice += 1
+                comparador.append(f)
 
-                else:
-                    indice = m +1
-                    archivo = f"archivos/zodiaco/{signos[indice]}"
+        if comparador[1] == "01":
+            if comparador[0] >= "19":
+                signo = "acuario"
+            else:
+                signo = "capricornio"
+
+        elif comparador[1] == "02":
+            if comparador[0] >= "19":
+                signo = "piscis"
+            else:
+                signo = "acuario"
+        elif comparador[1] == "03":
+            if comparador[0] >= "21":
+                signo ="aries"
+            else:
+                signo = "piscis"
+        elif comparador[1] == "04":
+            if comparador[0] >= "21":
+                signo = "tauro"
+            else:
+                signo = "Aries"
+        elif comparador[1] == "05":
+            if comparador[0] >= "21":
+                signo = "geminis"
+            else:
+                signo = "tauro"
+        elif comparador[1] == "06":
+            if comparador[0] >= "21":
+                signo = "cancer"
+            else:
+                signo = "geminis"
+        elif comparador[1] == "07":
+            if comparador[0] >= "23":
+                signo = "leo"
+            else:
+                signo = "Cancer"
+        elif comparador[1] == "08":
+            if comparador[0] >= "23":
+                signo = "Virgo"
+            else:
+                signo = "leo"
+        elif comparador[1] == "09":
+            if comparador[0] >= "23":
+                signo = "Libra"
+            else:
+                signo = "virgo"
+        elif comparador[1] == "10":
+            if comparador[0] >= "23":
+                signo = "Escorpio"
+            else:
+                signo = "Libra"
+        elif comparador[1] == "11":
+            if comparador[0] >= "22":
+                signo = "Sagitario"
+            else:
+                signo = "Escorpio"
+        elif comparador[1] == "12":
+            if comparador[0] >= "22":
+                signo = "capricornio"
+            else:
+                signo = "Sagitario"
+
+        archivo = f"archivos/zodiaco/{signo.lower()}"
 
         with open(archivo, encoding='utf-8') as z:
             contenido = z.read()
